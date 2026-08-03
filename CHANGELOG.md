@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- `nix-rebuild`: prefer `nixos-smart-switch` over `nh os switch .` on Linux, and
+  `nixos-rebuild boot --rollback` over `nixos-rebuild switch --rollback`. Live
+  activation restarts the systemd user manager and takes a running Wayland
+  compositor session down with it, so both of the previous commands are refused
+  outright by the agent guard on a compositor host — the command as written was
+  unrunnable exactly where it was most likely to be invoked.
+
 ## [0.1.0] - 2026-05-08
 
 ### Added
